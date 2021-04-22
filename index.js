@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var process = require('child_process');
 
-var cmd = process.spawn("npx", ["create-react-app --template:./cra-template-koix","myapp8"]);
+var cmd = process.spawn("npx", ["create-react-app","myapp8","--template","file:./cra-template-koix"]);
 
 cmd.stdout.on('data', function(output){
     console.log(output.toString());
