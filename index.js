@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 var process = require('child_process');
+var colors = require('colors');
 
 var cmd = process.spawn("npx", ["create-react-app","myapp8","--template","file:./cra-template-koix"]);
 
 cmd.stdout.on('data', function(output){
-    console.log(output.toString());
+    dd=output.toString()
+    const dataJson = eval(`(${dd})`);
+    console.log(dataJson)
 });
 
 cmd.on('close', function(){
-    console.log('Finished');
+    console.log('Finished'.green);
 });
 
 //Error handling
