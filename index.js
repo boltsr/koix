@@ -1,18 +1,17 @@
 #!/usr/bin/env node
-console.log("hello")
-const moment = require("moment");
+var process = require('child_process');
 
-console.log(moment())
-const { exec } = require("child_process");
+var cmd = process.spawn("npx create-react-app myapp9");
 
-exec("npx create-react-app myapp ", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
+cmd.stdout.on('data', function(output){
+    console.log(output.toString());
+});
+
+cmd.on('close', function(){
+    console.log('Finished');
+});
+
+//Error handling
+cmd.stderr.on('data', function(err){
+    console.log(err);
 });
