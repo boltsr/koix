@@ -6,8 +6,8 @@ var cmd = process.spawn("npx", ["create-react-app","myapp8","--template","file:.
 
 cmd.stdout.on('data', function(output){
     dd=output.toString()
-    const dataJson = eval(`(${dd})`);
-    console.log(dataJson)
+    // const dataJson = eval(`(${dd})`);
+    console.log(dd)
 });
 
 cmd.on('close', function(){
