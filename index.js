@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 var process = require('child_process');
 var colors = require('colors');
+var path = require('path');
 
-var cmd = process.spawn("npx", ["create-react-app","myapp8","--template","file:./cra-template-koix"]);
+var templateDir = path.join(__dirname, 'cra-template-koix');
+
+// console.log(x);
+// templateDir  = __dirname+"\"
+
+var cmd = process.spawn("npx", ["create-react-app","myapp8","--template",`file:${templateDir}`]);
 
 cmd.stdout.on('data', function(output){
     dd=output.toString()
