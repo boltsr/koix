@@ -22,7 +22,7 @@ cmd.on('close', function(){
 
 //Error handling
 cmd.stderr.on('data', function(err){
-    console.log("error".red)
-    console.log(err.toString().red)
+    // console.log("error".red)
+    console.log(err.toString().yellow)
     // console.log(err);
 });
