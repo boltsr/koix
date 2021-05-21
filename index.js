@@ -8,7 +8,7 @@ var templateDir = path.join(__dirname, 'cra-template-koix');
 // console.log(x);
 // templateDir  = __dirname+"\"
 
-var cmd = process.spawn("npx", ["create-react-app",agrs[1],"--template",`file:${templateDir}`]);
+var cmd = process.spawn("npx", ["create-react-app",args[1],"--template",`file:${templateDir}`]);
 
 cmd.stdout.on('data', function(output){
     dd=output.toString()
