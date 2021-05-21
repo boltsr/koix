@@ -2,13 +2,13 @@
 var process = require('child_process');
 var colors = require('colors');
 var path = require('path');
-var args = process.argv
+var appName = require("process").argv[2]
 var templateDir = path.join(__dirname, 'cra-template-koix');
 
 // console.log(x);
 // templateDir  = __dirname+"\"
 
-var cmd = process.spawn("npx", ["create-react-app",args[1],"--template",`file:${templateDir}`]);
+var cmd = process.spawn("npx", ["create-react-app",appName,"--template",`file:${templateDir}`]);
 
 cmd.stdout.on('data', function(output){
     dd=output.toString()
