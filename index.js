@@ -2,27 +2,20 @@
 var process = require('child_process');
 var colors = require('colors');
 var path = require('path');
+const prompt = require('prompt-sync')({sigint: true});
 
 const COMPONENT_LIST = ['navbar', 'newsfeed']
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+
 var user_select_comps = {}
 console.log("select components you want to add ".green)
-readline.question('navbar (yes)', name => {
-    console.log(`Hey there ${name}!`);
-    if(name) {
-        user_select_comps.navbar = true
-    }else{
-        user_select_comps.navbar = false
-    }
-    readline.close();
-});
-// readline.question('navbar (yes)', name => {
-//     console.log(`Hey there ${name}!`);
-//     readline.close();
-// });
+let str_navbar = prompt('navbar (yes) ');
+console.log('input numbers : ', str_navbar)
+if(!str_navbar || str_navbar === 'y' || str_navbar === 'yes') {
+    user_select_comps.navbar = true
+}else{
+    user_select_comps.navbar = false
+}
+console.log({user_select_comps})
 /*
 var templateDir = path.join(__dirname, 'cra-template-koix');
 var cmd = process.spawn("npx", ["create-react-app","myapp8","--template",`file:${templateDir}`]);
