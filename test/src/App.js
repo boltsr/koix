@@ -8,7 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 // import "assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
-import MyRoute from "service/MyRoute";
+import MyRoute from "services/MyRoute";
 import Leaderboard from "containers/Leaderboard";
 import DataContextContainer from "contexts/DataContextContainer";
 
