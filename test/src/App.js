@@ -3,9 +3,9 @@ import {
   BrowserRouter as Router,
   Switch
 } from "react-router-dom";
-import { Scrollbars } from "react-custom-scrollbars";
+// import { Scrollbars } from "react-custom-scrollbars";
 import "react-circular-progressbar/dist/styles.css";
-import "assets/css/fontawesome.min.css";
+// import "assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 import BasicStyle from "theme/basicStyle";
@@ -20,7 +20,7 @@ import ScrollContextContainer from "contexts/ScrollContextContainer";
 function App() {
   return (
     <div className="App">
-      <Scrollbars autoHide style={{ flex: 1 }}>
+      {/* <Scrollbars autoHide style={{ flex: 1 }}> */}
         <BasicStyle />
         <GlobalStyle />
         <GlobalModalStyle />
@@ -38,7 +38,7 @@ function App() {
             </DataContextContainer>
           </Switch>
         </Router>
-      </Scrollbars>
+      {/* </Scrollbars> */}
     </div>
   );
 }
