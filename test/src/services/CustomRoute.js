@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
-import PageLayout from 'layouts';
+import PageLayout from '../layouts';
 
 const CustomRoute = ({ component: Component, ...rest }) => {
 

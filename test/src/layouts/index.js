@@ -2,13 +2,13 @@
 /* eslint-disable array-callback-return */
 import React from 'react';
 import { PageLayoutContainer } from './style';
-import Topbar from './Topbar';
+// import Topbar from './Topbar';
 
 const PageLayout = ({ children }) => {
   
   return (
     <PageLayoutContainer>
-      <Topbar />
+      {/* <Topbar /> */}
       <div className='page-content'>
         {children}
       </div>
