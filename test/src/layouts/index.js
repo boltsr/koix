@@ -9,7 +9,7 @@ const PageLayout = ({ children }) => {
   
   return (
     <PageLayoutContainer>
-      <Topbar/>
+      <Topbar />
       <div className='page-content'>
         {children}
       </div>

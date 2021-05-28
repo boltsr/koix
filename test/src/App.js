@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+// import { Scrollbars } from "react-custom-scrollbars";
+import "react-circular-progressbar/dist/styles.css";
+// import "assets/css/fontawesome.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
+// import MyRoute from "services/MyRoute";
+// import Leaderboard from "containers/Leaderboard";
+// import DataContextContainer from "contexts/DataContextContainer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          {/* <DataContextContainer> */}
+            {/* <MyRoute component={Leaderboard} /> */}
+            <Route path="/" render={() => <div></div>} />
+          {/* </DataContextContainer> */}
+        </Switch>
+      </Router>
     </div>
   );
 }

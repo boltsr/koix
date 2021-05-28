@@ -9,8 +9,7 @@ import {
 import React, { useContext, useState, useRef } from "react";
 import { Navbar, Nav, Image, Overlay, Tooltip, Modal, Button } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { DataContext } from "contexts/DataContextContainer";
 import { TopbarContainer } from "./style";
 import { show_ar_balance, show_digit_number } from "service/utils";
