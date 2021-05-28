@@ -9,19 +9,19 @@ import "react-circular-progressbar/dist/styles.css";
 // import "assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
-// import MyRoute from "services/MyRoute";
+import MyRoute from "services/MyRoute";
+import DataContextContainer from "./contexts/DataContextContainer"
 // import Leaderboard from "containers/Leaderboard";
-// import DataContextContainer from "contexts/DataContextContainer";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          {/* <DataContextContainer> */}
+          <DataContextContainer>
             {/* <MyRoute component={Leaderboard} /> */}
-            <Route path="/" render={() => <div></div>} />
-          {/* </DataContextContainer> */}
+            <MyRoute path="/" render={() => <div></div>} />
+          </DataContextContainer>
         </Switch>
       </Router>
     </div>

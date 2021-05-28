@@ -7,18 +7,12 @@ import {
   IconFish
 } from "assets/images";
 import React, { useContext, useState, useRef } from "react";
-import { Navbar, Nav, Image, Overlay, Tooltip, Modal, Button } from "react-bootstrap";
+import { Navbar, Nav, Image, Overlay, Tooltip, Button } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
 import { useHistory, Link } from "react-router-dom";
 import { DataContext } from "contexts/DataContextContainer";
 import { TopbarContainer } from "./style";
 import { show_ar_balance, show_digit_number } from "service/utils";
-import { colors } from "theme";
-
-let versionUpContent = '<p>Koi is currently in BETA. We are building decentralized web services, and sometimes things break unexpectantly. </p>';
-versionUpContent += '<p><b>03/21/2021</b> - When you use a Koi portal, nodes in the Koi network serve your requests, and store data for you in permanent decentralized storage on the Arweave network.</p>'
-versionUpContent += '<p><b>03/28/2021</b> - We’re working to make it possible to tip artists fee-lessly, as well as pay them by viewing their content, but please bear with us as we work out the kinks!</p>'
-versionUpContent += '<p>If you want to talk more about what we’re doing or make suggestions to improve the interface, hit us up on our <a href="https://discord.gg/zByqXPGEWy" target="_blank">Discord</a>.</p>'
 
 function Topbar() {
   const history = useHistory();
@@ -33,36 +27,8 @@ function Topbar() {
   } = useContext(DataContext);
   const [show, setShow] = useState(false);
   const target = useRef(null);
-  // const [detectorAr, setDetectorAr] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
-  // const activeArweave = () => {
-  //   // setDetectorAr(true);
-  //   // setBalanceKoi(50.01);
-  //   // setBalanceAr(50.01);
-  // };
-
-  // const activeEthereum = async () => {
-  //   if (window.ethereum) {
-  //     try {
-  //       const accounts = await window.ethereum.enable();
-  //       setAddressEth(accounts[0]);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   } else {
-  //     // metamask extension didn't install
-  //     show_notification("Please install metamask extension first.", "KOI");
-  //     setTimeout(() => {
-  //       let url = "https://metamask.io/download.html";
-  //       window.open(url, "_blank");
-  //     }, 2000);
-  //   }
-  // };
   const activeKoi = async () => {
-    // if (!addressEth) {
-    //   await activeEthereum();
-    // }
     if (!keyAr) {
       history.push("/wallet-key");
     }
@@ -74,41 +40,10 @@ function Topbar() {
     setBalanceAr(null)
     setShow(false)
   }
-
-  // useEffect(() => {
-  //   if (detectorAr) {
-  //     window.addEventListener("arweaveWalletLoaded", detectArweaveWallet());
-  //     return () => {
-  //       window.removeEventListener("arweaveWalletLoaded", () => {});
-  //     };
-  //   }
-  // }, [detectorAr]);
-
-  // const detectArweaveWallet = async () => {
-  //   try {
-  //     let addr = await arweave.wallets.getAddress();
-  //     console.log("detected arweave wallet address : ", addr);
-  //     if (addr) {
-  //       setAddressAr(addr);
-  //       history.push("/wallet-key");
-  //     } else {
-  //       // show alert
-  //       history.push("/wallet-key");
-  //       // show_notification(
-  //       //   "There is a problem to get your arwallet address. Please install arconnect extension and try again."
-  //       // );
-  //     }
-  //   } catch (err) {
-  //     // console.log(err);
-  //     history.push("/wallet-key");
-  //     // show_notification("Error on detecting Arweave wallet address");
-  //   }
-  // };
   
   return (
     <TopbarContainer collapseOnSelect expand="md" fixed="top">
       <Link to="/" className="navbar-brand">
-        <span className="version-beta">BETA</span>
         <Image src={Logo} />
       </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav">
@@ -116,9 +51,6 @@ function Topbar() {
       </Navbar.Toggle>
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <span className="btn-nav cursor" onClick={() => setShowModal(true)}>
-            BETA
-          </span>
           <Link to="/faucet?step=0" className="btn-nav">
             Faucet
           </Link>
@@ -158,12 +90,6 @@ function Topbar() {
               </Space>
             </div>
           )}
-          {/* <Image
-            src={DefaultUser}
-            ref={target}
-            className="icon-user d-none d-md-flex cursor"
-            onClick={() => setShow(!show)}
-          />*/}
           <Overlay
             target={target.current}
             show={show}
@@ -177,9 +103,7 @@ function Topbar() {
                 {...props}
                 arrowProps={{ style: { display: "none" } }}
               >
-                <div className="overlay-header">
-                  <p onClick={() => history.replace('/my-content') } className="text-left text-bold cursor">See my content</p>
-                </div>
+                <div className="overlay-header"></div>
                 <div className="overlay-body">
                   <div className="overlay-body-row">
                     <p className="text-bold">Account summary</p>
@@ -213,28 +137,6 @@ function Topbar() {
           </Overlay>
         </Nav>
       </Navbar.Collapse>
-      <Modal
-        show={showModal}
-        centered
-        dialogClassName="modal-confirm-transaction"
-        onHide={() => setShowModal(false)}
-      >
-        <Modal.Body>
-          <FaTimes
-            className="icon-close cursor"
-            color={colors.blueDark}
-            size={24}
-            onClick={() => setShowModal(false)}
-          />
-          <h2 className="modal-title text-blue">Welcome to the KOI <span className='lbl-beta'>beta</span></h2>
-          <div className="modal-row mb-2">
-            <div className="modal-row-left">
-              <div className="text-blue mb-4 ml-4 mr-4 mt-4 text-center" 
-               dangerouslySetInnerHTML={{__html: versionUpContent}}></div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
     </TopbarContainer>
   );
 }
