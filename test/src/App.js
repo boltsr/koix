@@ -8,11 +8,11 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+// import Leaderboard from "containers/Leaderboard";
 import GlobalStyle from "theme/globalStyle";
 import CustomRoute from "services/CustomRoute";
 import DataContextContainer from "contexts/DataContextContainer"
 // import Leaderboard from "containers/Leaderboard";
-
 function App() {
   return (
     <div className="App">
@@ -29,5 +29,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
