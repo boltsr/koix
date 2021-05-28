@@ -10,27 +10,33 @@ const COMPONENT_LIST = ['navbar', 'newsfeed']
 const DEBUG_MODE = true
 const addLine = async (file, seachKeyword, newLine) => {
     var new_file
-    rl = readline(file); 
-    rl.on('line', function(line, lineCount, byteCount) {
-        // do something with the line of text
-        console.log("read line : ", line)
-        if(line.includes(seachKeyword)) {
-            console.log("find", true)
-            console.log(newLine)
-            new_file.push(line)
-            new_file.push(newLine)    
-        }else{
-            new_file.push(line)
-        }
+    return new Promise( (resolve, reject) => {
+        rl = readline(file); 
+        rl.on('line', function(line, lineCount, byteCount) {
+            // do something with the line of text
+            console.log("read line : ", line)
+            console.log( lineCount, " : ", byteCount)
+            if(line.includes(seachKeyword)) {
+                console.log("find", true)
+                console.log(newLine)
+                new_file.push(line)
+                new_file.push(newLine)    
+            }else{
+                new_file.push(line)
+            }
+        })
+        .on('error', function(e) {
+            // something went wrong
+            return reject(e)
+        })
+        .on('end', function() {
+            // EOF
+            console.log(new_file)
+            console.log("end of file".green)
+            return resolve(new_file)
+        });
     })
-    .on('error', function(e) {
-        // something went wrong
-    })
-    .on('close', function() {
-        // EOF
-        console.log(new_file)
-        console.log("end of file".green)
-    });
+    
 
     // fs.writeFile(file, data, (err) => {
     //     if (err) console.log(err);
@@ -38,7 +44,8 @@ const addLine = async (file, seachKeyword, newLine) => {
     // });
 }
 const select_component = async () => {
-    await addLine('./test/src/App.js', 'import "antd/dist/antd.css";', 'import Leaderboard from "containers/Leaderboard";') // test code
+    var res = await addLine('./test/src/App.js', 'import "antd/dist/antd.css";', 'import Leaderboard from "containers/Leaderboard";') // test code
+    console.log({res})
     var user_select_comps = {}
     console.log("select components you want to add ".green)
     let str_navbar = prompt('navbar (yes) ');
