@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
       padding-right: 10%;
     }
   }
+  .ml-auto, .mx-auto {
+    margin-left: auto !important;
+  }
   .hidden-sm{
     @media (max-width: ${mixins.sm}px) {
       display: none;
