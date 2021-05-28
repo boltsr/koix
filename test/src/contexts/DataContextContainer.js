@@ -19,19 +19,6 @@ function DataContextContainer(props){
   const [totalViewCt, setTotalViewCt] = useLocalStorage('koi-totalViewCt', 0);
   const [totalKoiCt, setTotalKoiCt] = useLocalStorage('koi-totalKoiCt', 0);
 
-  // const getKoiBalance = async () => {
-  //   if(keyAr) {
-  //     let balance = await getKoi(keyAr)
-  //     setBalanceKoi(Number(balance.koiBalance))
-  //     setBalanceAr(convertArBalance(balance.arBalance))
-  //   }else{
-  //     console.log("test key", keyAr)
-  //     console.log('ther is no key file')
-  //   }
-  // }
-  
-  // useInterval( () => getKoiBalance(), 120000);
-
   return (
     <DataContext.Provider
       value={{
@@ -59,22 +46,6 @@ function DataContextContainer(props){
     </DataContext.Provider>
   );
 };
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  // remember the latet callback.
-  useEffect(() => {
-    savedCallback.current = callback
-  }, [callback]);
-
-  // set up the interval.
-  useEffect(() => {
-    let id = setInterval( () => {
-      savedCallback.current()
-    }, [delay])
-    return () => clearInterval(id)
-  }, [delay]);
-}
 DataContextContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };

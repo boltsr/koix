@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 // import { Scrollbars } from "react-custom-scrollbars";
 import "react-circular-progressbar/dist/styles.css";
-// import "assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+import GlobalStyle from "theme/globalStyle";
 import CustomRoute from "services/CustomRoute";
 import DataContextContainer from "contexts/DataContextContainer"
 // import Leaderboard from "containers/Leaderboard";
@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <GlobalStyle/>
         <Switch>
           <DataContextContainer>
             {/* <CustomRoute component={Leaderboard} /> */}
