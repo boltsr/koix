@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { getKoi } from "service/KOI";
-import { convertArBalance } from "service/utils";
+// import { getKoi } from "service/KOI";
+// import { convertArBalance } from "service/utils";
 import { useLocalStorage } from "hooks"
 
 const DataContext = React.createContext(null);
@@ -19,18 +19,18 @@ function DataContextContainer(props){
   const [totalViewCt, setTotalViewCt] = useLocalStorage('koi-totalViewCt', 0);
   const [totalKoiCt, setTotalKoiCt] = useLocalStorage('koi-totalKoiCt', 0);
 
-  const getKoiBalance = async () => {
-    if(keyAr) {
-      let balance = await getKoi(keyAr)
-      setBalanceKoi(Number(balance.koiBalance))
-      setBalanceAr(convertArBalance(balance.arBalance))
-    }else{
-      console.log("test key", keyAr)
-      console.log('ther is no key file')
-    }
-  }
+  // const getKoiBalance = async () => {
+  //   if(keyAr) {
+  //     let balance = await getKoi(keyAr)
+  //     setBalanceKoi(Number(balance.koiBalance))
+  //     setBalanceAr(convertArBalance(balance.arBalance))
+  //   }else{
+  //     console.log("test key", keyAr)
+  //     console.log('ther is no key file')
+  //   }
+  // }
   
-  useInterval( () => getKoiBalance(), 120000);
+  // useInterval( () => getKoiBalance(), 120000);
 
   return (
     <DataContext.Provider
