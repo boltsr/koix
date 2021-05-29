@@ -26,3 +26,14 @@ cmd.stderr.on('data', function(err){
     console.log(err.toString().yellow)
     // console.log(err);
 });
+
+
+process.on('unhandledRejection', function(err){
+    // console.log("error".red)
+    console.log(err.toString().yellow)
+    // console.log(err);
+})
+
+process.on('uncaughtException', error => {
+    console.log(err.toString().yellow)
+})
