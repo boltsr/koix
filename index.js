@@ -1,17 +1,46 @@
 #!/usr/bin/env node
-var process = require('child_process');
-var colors = require('colors');
-var path = require('path');
+var child   = require('child_process');
+var colors  = require('colors');
+var path    = require('path');
 var appName = require("process").argv[2]
+
+
+// process error handling (catch all)
+
+process.on('unhandledRejection', function (err) {
+    console.log(err.toString().yellow)
+})
+
+process.on('uncaughtException', error => {
+    console.log(error.toString().yellow)
+    // console.log(error.stack);
+})
+
+
+// cra execution
+
+// template directory
 var templateDir = path.join(__dirname, 'cra-template-koix');
 
-// console.log(x);
-// templateDir  = __dirname+"\"
+// check platform for specific fine tweaks
+var isWin = /^win/.test(process.platform);
 
-var cmd = process.spawn("npx", ["create-react-app",appName,"--template",`file:${templateDir}`]);
+// debug
+// console.log("templateDir=", templateDir)
+
+// child process
+var cmd = child.spawn(
+    isWin ? "npx.cmd" : "npx",
+    [
+        "create-react-app",appName,
+        "--template",`file:${templateDir}`
+    ]
+);
+
+// child event handlers
 
 cmd.stdout.on('data', function(output){
-    dd=output.toString()
+    let dd = output.toString()
     // const dataJson = eval(`(${dd})`);
     console.log(dd)
 });
@@ -20,20 +49,12 @@ cmd.on('close', function(){
     console.log('Finished'.green);
 });
 
-//Error handling
+// child error handling
 cmd.stderr.on('data', function(err){
     // console.log("error".red)
     console.log(err.toString().yellow)
     // console.log(err);
 });
 
-
-cmd.on('unhandledRejection', function(err){
-    // console.log("error".red)
-    console.log(err.toString().yellow)
-    // console.log(err);
-})
-
-cmd.on('uncaughtException', error => {
-    console.log(error.toString().yellow)
-})
+// debug
+// process.exit()
